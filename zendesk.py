@@ -3,7 +3,8 @@ import sys
 import csv
 from dateutil import parser
 
- # common, assumed knowledge
+ # common, assumed knowledge that it takes 2 minutes from one station to the next_line
+ # 5 minutes to change line in one station
 TIME_TAKEN_TO_NEXT_STATION = 2
 TIME_TAKEN_TO_CHANGE_LINE = 5
 MAX_INT = sys.maxsize
@@ -12,6 +13,11 @@ class Network:
   def __init__(self, nodes):
     self.nodes = nodes
 
+# the solution is not exactly optimal because the values of the costs of the edges
+# change as user travels on the MRT lines (e.g. user starts in peak hours and the trip extends over to non-peak).
+# The solution is only generated taking into account the time at which the user starts the trip.
+# The exact optimal path might differ but for traveling purposes, it should be fine as
+# extra time should already be factored in before traveling.
   def construct_graph(self, node_list, date): # to determine hour-related info wrt distances
     graph = [[0 for origin in node_list] for dest in node_list]
     for origin_idx in range(len(node_list)):
