@@ -3,15 +3,21 @@ import sys
 import csv
 from dateutil import parser
 
- # common, assumed knowledge
+ # common, assumed knowledge that it takes 2 minutes from one station to the next_line
+ # 5 minutes to change line in one station
 TIME_TAKEN_TO_NEXT_STATION = 2
-TIME_TAKEN_TO_CHANGE_LINE = 10
+TIME_TAKEN_TO_CHANGE_LINE = 5
 MAX_INT = sys.maxsize
 
 class Network:
   def __init__(self, nodes):
     self.nodes = nodes
 
+# the solution is not exactly optimal because the values of the costs of the edges
+# change as user travels on the MRT lines (e.g. user starts in peak hours and the trip extends over to non-peak).
+# The solution is only generated taking into account the time at which the user starts the trip.
+# The exact optimal path might differ but for traveling purposes, it should be fine as
+# extra time should already be factored in before traveling.
   def construct_graph(self, node_list, date): # to determine hour-related info wrt distances
     graph = [[0 for origin in node_list] for dest in node_list]
     for origin_idx in range(len(node_list)):
@@ -19,12 +25,13 @@ class Network:
         try:
           if origin_idx == dest_idx-1 or origin_idx == dest_idx+1:
             if node_list[origin_idx].line == node_list[origin_idx+1].line:
-              graph[origin_idx][dest_idx] = TIME_TAKEN_TO_NEXT_STATION
+              line = node_list[origin_idx].line
+              graph[origin_idx][dest_idx] = get_time_taken_to_next_station(line, date)
         except:
           pass
         if node_list[origin_idx].name == node_list[dest_idx].name:
           if node_list[origin_idx].line != node_list[dest_idx].line:
-            graph[origin_idx][dest_idx] = TIME_TAKEN_TO_CHANGE_LINE
+            graph[origin_idx][dest_idx] = get_time_taken_to_change_line(date)
     return graph
 
   # return node with min distance and is not visited yet
@@ -108,14 +115,15 @@ class Network:
 
   def get_route(self, origin, dest, date):
     applicable_nodes = self.get_applicable_nodes(date)
+    applicable_nodes = bonus_process_applicable_nodes(applicable_nodes, date)
     graph = self.construct_graph(applicable_nodes, date)
     origin_idx = self.get_node_idx(origin, applicable_nodes)
     dest_idx = self.get_node_idx(dest, applicable_nodes)
     if origin_idx == None:
-      print('The origin station is not opened yet at this point in time.')
+      print('The origin station is not operating at this point in time.')
       return None
     elif dest_idx == None:
-      print('The destination station is not opened yet at this point in time.')
+      print('The destination station is not operating at this point in time.')
       return None
     path = self.dijkstra(origin_idx, dest_idx, graph)
     path = self.simplify_path(applicable_nodes, path)
@@ -184,7 +192,7 @@ def is_within_night_hours(date): # 10PM to 6AM
 def print_instructions(li):
   for item in li:
       print(item)
-      
+
 def levenshtein(s1, s2):
   if len(s1) < len(s2):
     return levenshtein(s2, s1)
@@ -202,8 +210,42 @@ def levenshtein(s1, s2):
       substitutions = previous_row[j] + (c1 != c2)
       current_row.append(min(insertions, deletions, substitutions))
     previous_row = current_row
-  
+
   return previous_row[-1]
+
+def get_time_taken_to_next_station(line, date):
+  if is_within_peak_hours(date):
+    if line in ['NS', 'NE']:
+      return 12
+    else:
+      return 10
+  elif is_within_non_peak_hours(date):
+    if line in ['DT', 'TE']:
+      return 8
+    else:
+      return 10
+  elif is_within_night_hours(date):
+    if line == 'TE':
+      return 8
+    else:
+      return 10
+  else:
+    return TIME_TAKEN_TO_NEXT_STATION
+
+def get_time_taken_to_change_line(date):
+  if is_within_peak_hours(date):
+    return 15
+  elif is_within_non_peak_hours(date) or is_within_night_hours(date):
+    return 10
+  else:
+    return TIME_TAKEN_TO_CHANGE_LINE
+
+def bonus_process_applicable_nodes(node_list, date):
+  applicable_nodes = []
+  for node in node_list:
+    if not (is_within_night_hours(date) and node.line in ['DT', 'CG', 'CE']):
+      applicable_nodes.append(node)
+  return applicable_nodes
 
 def find_station_by_name(keywords, all_stations):
   minimum = MAX_INT
@@ -262,11 +304,13 @@ def main():
           invalid = False
         except:
           print('Format is invalid. Please type again.')
-    print('Calculating route from '+origin.name+' to '+end.name+' at '+start_time.strftime('%H:%M, %d/%m/%Y'))
+    print('Calculating fastest route from '+origin.name+' to '+end.name+' at '+start_time.strftime('%H:%M, %d/%m/%Y'))
     print('Please wait...')
     route = network.get_route(origin.name, end.name, start_time)
     try:
+      print('')
       print_instructions(route)
+      print('')
       command = input('Route has been found. Continue finding another route?\nType \'n\' to stop programme, any other key to continue: ')
     except:
       command = input('An error has occured. Continue finding another route?\nType \'n\' to stop programme, any other key to continue: ')
