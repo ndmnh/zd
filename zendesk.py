@@ -113,7 +113,9 @@ class Network:
     instruction_list.append(instruction)
     return instruction_list
 
-  def get_route(self, origin, dest, date):
+  def get_route(self, origin, dest, date_str):
+    print(date_str)
+    date = parser.parse(date_str)
     applicable_nodes = self.get_applicable_nodes(date)
     applicable_nodes = bonus_process_applicable_nodes(applicable_nodes, date)
     graph = self.construct_graph(applicable_nodes, date)
@@ -306,7 +308,7 @@ def main():
           print('Format is invalid. Please type again.')
     print('Calculating fastest route from '+origin.name+' to '+end.name+' at '+start_time.strftime('%H:%M, %d/%m/%Y'))
     print('Please wait...')
-    route = network.get_route(origin.name, end.name, start_time)
+    route = network.get_route(origin.name, end.name, start_time.strftime('%Y-%m-%dT%H:%M'))
     try:
       print('')
       print_instructions(route)
