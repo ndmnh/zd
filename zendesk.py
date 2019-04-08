@@ -5,7 +5,7 @@ from dateutil import parser
 
  # common, assumed knowledge
 TIME_TAKEN_TO_NEXT_STATION = 2
-TIME_TAKEN_TO_CHANGE_LINE = 10
+TIME_TAKEN_TO_CHANGE_LINE = 5
 MAX_INT = sys.maxsize
 
 class Network:
@@ -19,12 +19,13 @@ class Network:
         try:
           if origin_idx == dest_idx-1 or origin_idx == dest_idx+1:
             if node_list[origin_idx].line == node_list[origin_idx+1].line:
-              graph[origin_idx][dest_idx] = TIME_TAKEN_TO_NEXT_STATION
+              line = node_list[origin_idx].line
+              graph[origin_idx][dest_idx] = get_time_taken_to_next_station(line, date)
         except:
           pass
         if node_list[origin_idx].name == node_list[dest_idx].name:
           if node_list[origin_idx].line != node_list[dest_idx].line:
-            graph[origin_idx][dest_idx] = TIME_TAKEN_TO_CHANGE_LINE
+            graph[origin_idx][dest_idx] = get_time_taken_to_change_line(date)
     return graph
 
   # return node with min distance and is not visited yet
@@ -184,7 +185,7 @@ def is_within_night_hours(date): # 10PM to 6AM
 def print_instructions(li):
   for item in li:
       print(item)
-      
+
 def levenshtein(s1, s2):
   if len(s1) < len(s2):
     return levenshtein(s2, s1)
@@ -202,8 +203,42 @@ def levenshtein(s1, s2):
       substitutions = previous_row[j] + (c1 != c2)
       current_row.append(min(insertions, deletions, substitutions))
     previous_row = current_row
-  
+
   return previous_row[-1]
+
+def get_time_taken_to_next_station(line, date):
+  if is_within_peak_hours(date):
+    if line in ['NS', 'NE']:
+      return 12
+    else:
+      return 10
+  elif is_within_non_peak_hours(date):
+    if line in ['DT', 'TE']:
+      return 8
+    else:
+      return 10
+  elif is_within_night_hours(date):
+    if line == 'TE':
+      return 8
+    else:
+      return 10
+  else:
+    return TIME_TAKEN_TO_NEXT_STATION
+
+def get_time_taken_to_change_line(date):
+  if is_within_peak_hours(date):
+    return 15
+  elif is_within_non_peak_hours(date) or is_within_night_hours(date):
+    return 10
+  else:
+    return TIME_TAKEN_TO_CHANGE_LINE
+
+def bonus_process_applicable_nodes(node_list, date):
+  applicable_nodes = []
+  for node in node_list:
+    if not (is_within_night_hours(date) and node.line in ['DT', 'CG', 'CE']):
+      applicable_nodes.append(node)
+  return applicable_nodes
 
 def find_station_by_name(keywords, all_stations):
   minimum = MAX_INT
