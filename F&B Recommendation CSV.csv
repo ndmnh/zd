@@ -1,0 +1,81 @@
+Location,Name of store,x,y,Signature food,Cuisine,Price
+Hive,Co-op café,339,742,Pasta,western,5.5
+Koufu,Japanese cuisines,331,779,Hotplate chicken fuyong,japanese,4.3
+Koufu,Mixed Veg rice,331,779,Economical rice,chinese,3
+Koufu,Pasta express,331,779,Carbonara,western,5.3
+Koufu,chicken rice,331,779,Steamed chicken rice,chinese,2.5
+Koufu,ban mian and fish soup,331,779,Seafood ban mian,chinese,3.5
+Koufu,The Poh-Keh Bowl,331,779,Hawaiian Yakiniku Rice beef poke bowl,japanese,4.9
+The Quad Café,Nasi Padang,193,656,Nasi Lemak,malay,3.5
+The Quad Café,Chinese Food,193,656,Beef Noodle Soup,chinese,5.5
+The Quad Café,Claypot rice,193,656,Boiled Beef Rice,chinese,5.8
+The Quad Café,Mix Economics rice,193,656,Economical rice,chinese,4.3
+The Quad Café,korea food,193,656,Beef bulgogi,korean,5.5
+North Spine Plaza,Grande Cibo,208,542,Tropicana Hawaiian,western,5.5
+North Spine Plaza,Paik's Bibimbap,208,542,Beef Bulgogi Bibimbap,korean,9
+North Spine Plaza,Soup Spoon,208,542,Velvety Mushroom Stroganoff,western,12.7
+North Spine Plaza,Mc Donald's,208,542,McSpicy Meal,western,6.1
+North Spine Plaza,Subway,208,542,6 Inch Teriyaki chicken sandwich,western,6.2
+North Spine Plaza,Long John Silvers,208,542,2 Pc Fish Set,western,6.3
+North Spine Plaza,Pizza Hut,208,542,Pizza Meal,western,6.2
+North Spine Plaza,KFC,208,542,2 Pc Chicken Meal,western,6.75
+North Spine Food Court,chicken rice,208,542,Steamed Chicken Rice,chinese,3
+North Spine Food Court,hand made noodles,208,542,Ban Mian,chinese,3
+North Spine Food Court,mixed rice,208,542,Economical rice,chinese,2.4
+North Spine Food Court,cantonese roast duck,208,542,Roasted duck rice,chinese,3.3
+North Spine Food Court,western food ,208,542,Chicken chop,western ,4.8
+North Spine Food Court,soup delight,208,542,Bak Kut Teh,chinese,4.2
+North Spine Food Court,indian cuisines,208,542,Mutton briyani set,indian,4.2
+North Spine Food Court,Malay bbq,208,542,Ayam penyet,malay,4
+North Spine Food Court,Vegetarian food ,208,542,Economical rice,chinese,3.5
+North Spine Food Court,Salad,208,542,Chicken salad,western,3.9
+North Spine Food Court,Japanese korean delight,208,542,Hotplate chicken + beef set,japanese,5.8
+North Spine Food Court,Xian Cuisine,208,542,Biang biang noodle,chinese,3.2
+North Spine Food Court,Vietnamese Cuisine,208,542,Pho beef kway teow soup,vietnamese,5
+North Spine Food Court,Bbq delight,208,542,Claypot chicken with rice,chinese,4.8
+North Spine Food Court,Italian Pasta,208,542,Chicken Aglio Oglio Spicy,western,4.2
+Canteen 16,Japanese/Korean,261,365,Miso Ramen,japanese,5.8
+Canteen 16,Chicken Rice,261,365,Steamed chicken rice,chinese,3
+Canteen 16,Mixed Veg rice,261,365,Economical rice,chinese,3.5
+Canteen 14,Western food ,326,231,Fish and chips set,western,4.5
+Canteen 14,Korean,326,231,Kimchi Soup,korean,4
+Canteen 14,Asian food delights ,326,231,Economical rice,chinese,3.4
+Canteen 14,Ban Mian Fish Soup,326,231,Ban mian,chinese,3
+Tamarind Food Court,Hainanese Chicken Rice,480,117,Steamed chicken rice,chinese,3.5
+Tamarind Food Court,Hai Wang Fishball Noodle,480,117,Hai Wang fishball set meal,chinese,5.5
+Tamarind Food Court,Mixed Veg Rice,480,117,Economical rice,chinese,3.5
+Tamarind Food Court,Western Cuisine,480,117,Pork cutlet set,western,4.5
+Tamarind Food Court,Korean Cuisine,480,117,Beef bulgogi ,korean,5.5
+Tamarind Food Court,Uncle Penyet ,480,117,Ayam penyet,malay,5
+Tamarind Food Court,Indian Food,480,117,Briyani,indian,5.5
+Hall 10/11 ,Kiso Japanese cuisine,552,127,Tonkatsu Ramen,japanese,4.4
+Hall 10/11 ,Mixed Veg Rice,552,127,Economical rice,chinese,3.6
+Hall 10/11,Sichuan Mei Shi,552,127,Cumin Sliced Pork rice,chinese,4
+Hall 10/11,Noodle Store,552,127,U-mian,chinese,3.5
+Hall 10/11,Malay Food,552,127,Mee siam,malay,3
+Hall 10/11,Mixed Veg rice,612,199,Economical rice,chinese,3.8
+North Hill Food Court,Happy Food Chinese Cuisine,612,199,Sambal chicken with rice,chinese,5
+North Hill Food Court,Ah Boon's Fish soup,612,199,Mixed fish noodle soup,chinese,4.5
+North Hill Food Court,Western Cuisine,612,199,Chicken bolognese,western,5
+Pioneer Food Court,Thai Cuisine,673,621,Thai Tom Yum soup,thai,6
+Pioneer Food Court,Economical Rice/Bone soup,673,621,Economical rice,chinese,3.3
+Pioneer Food Court,Muslim Food,673,621,Nasi Lemak set,malay,3
+Pioneer Food Court,Korean Food,673,621,Bibimbap,korean,4.5
+Hall 1,Western Cuisine,533,569,Battered fish and chips,western,5.5
+Hall 1,Handmade Noodles,533,569,Ban mian,chinese,3.5
+Hall 1,Braised Rice and Noodle,533,569,Braised pork rice,chinese,5.5
+Hall 1,Menya Takashi,533,569,Tonkatsu Special ramen,japanese,6.9
+Hall 1,Economical Rice,533,569,Economical rice,chinese,3.8
+Hall 2 Food court,Japanese/Western,498,482,The oven jumbo sausage set,western,4.3
+Hall 2 Food court,indian cuisines,498,482,Nasi briyani,indian ,4.5
+Hall 2 Food court,Ayam Penyet,498,482,Ayam penyet,malay,4.8
+Hall 2 Food court,Chicken Rice,498,482,Roasted chicken rice,chinese,2.8
+Hall 2 Food court,Xiao Long Bao,498,482,Fresh prawn chicken siew mai,chinese,4.5
+Hall 2 Food court,Korean Cuisine,498,482,Saba fish,chinese,4.5
+Hall 2 Food court,Sichuan Cuisine,498,482,Kongbao chicken,korean,5.5
+Hall 2 Food court,Economical Rice,498,482,Economical rice,chinese,3.4
+Hall 9,Ju Li Xiang,510,259,Mixed veg/homestyle fried rice,chinese,2.5
+Hall 9,Chinese Cuisine,510,259,Claypot herbal chicken,chinese,4.5
+Hall 9,Xi An Noodle,510,259,Shao zi mian,chinese,2.7
+Hall 9,Japanese,510,259,Special tonkatsu ramen/udon,japanese,6.9
+Hall 9,House Steamboat Restaurant,510,259,The house beef set,chinese,10.9
