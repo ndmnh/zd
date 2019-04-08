@@ -109,14 +109,15 @@ class Network:
 
   def get_route(self, origin, dest, date):
     applicable_nodes = self.get_applicable_nodes(date)
+    applicable_nodes = bonus_process_applicable_nodes(applicable_nodes, date)
     graph = self.construct_graph(applicable_nodes, date)
     origin_idx = self.get_node_idx(origin, applicable_nodes)
     dest_idx = self.get_node_idx(dest, applicable_nodes)
     if origin_idx == None:
-      print('The origin station is not opened yet at this point in time.')
+      print('The origin station is not operating at this point in time.')
       return None
     elif dest_idx == None:
-      print('The destination station is not opened yet at this point in time.')
+      print('The destination station is not operating at this point in time.')
       return None
     path = self.dijkstra(origin_idx, dest_idx, graph)
     path = self.simplify_path(applicable_nodes, path)
@@ -297,11 +298,13 @@ def main():
           invalid = False
         except:
           print('Format is invalid. Please type again.')
-    print('Calculating route from '+origin.name+' to '+end.name+' at '+start_time.strftime('%H:%M, %d/%m/%Y'))
+    print('Calculating fastest route from '+origin.name+' to '+end.name+' at '+start_time.strftime('%H:%M, %d/%m/%Y'))
     print('Please wait...')
     route = network.get_route(origin.name, end.name, start_time)
     try:
+      print('')
       print_instructions(route)
+      print('')
       command = input('Route has been found. Continue finding another route?\nType \'n\' to stop programme, any other key to continue: ')
     except:
       command = input('An error has occured. Continue finding another route?\nType \'n\' to stop programme, any other key to continue: ')
